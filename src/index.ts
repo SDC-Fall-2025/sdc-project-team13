@@ -2,6 +2,13 @@ import "dotenv/config";
 import express from "express";
 import { Client, GatewayIntentBits, Events, Interaction, Message } from "discord.js";
 import { execute as helloExec } from "./commands/hello.js";
+import { execute as registerTeamExec } from "./commands/register-team.js";
+import { execute as addMemberExec } from "./commands/add-member.js";
+import { execute as removeMemberExec } from "./commands/remove-member.js";
+import { execute as setProjectExec } from "./commands/set-project.js";
+import { execute as teamInfoExec } from "./commands/team-info.js";
+import { execute as listTeamsExec } from "./commands/list-teams.js";
+import { findOrCreateUser, logMessage } from "./utils/database.js";
 
 const PREFIX = "!";
 
@@ -14,7 +21,13 @@ const client = new Client({
 });
 
 const handlers: Record<string, (i: any) => Promise<any>> = {
-  hello: helloExec
+  hello: helloExec,
+  "register-team": registerTeamExec,
+  "add-member": addMemberExec,
+  "remove-member": removeMemberExec,
+  "set-project": setProjectExec,
+  "team-info": teamInfoExec,
+  "list-teams": listTeamsExec
 };
 
 client.once(Events.ClientReady, c => {
@@ -40,9 +53,29 @@ client.on(Events.InteractionCreate, async (interaction: Interaction) => {
   }
 });
 
-// Prefix fallback for your Week 1 requirement
+// Message logging and prefix commands
 client.on(Events.MessageCreate, async (msg: Message) => {
   if (msg.author.bot) return;
+  
+  // Log all messages for context tracking (Week 2 requirement)
+  try {
+    const user = await findOrCreateUser(
+      msg.author.id,
+      msg.author.username,
+      msg.author.displayName || undefined
+    );
+    
+    await logMessage(
+      msg.guild?.id || "",
+      msg.channel.id,
+      user.id,
+      msg.content
+    );
+  } catch (error) {
+    console.error("Error logging message:", error);
+  }
+
+  // Prefix fallback for your Week 1 requirement
   if (!msg.content.startsWith(PREFIX)) return;
   const [cmd] = msg.content.slice(PREFIX.length).trim().split(/\s+/);
   if (cmd.toLowerCase() === "hello") {

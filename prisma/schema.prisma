@@ -7,16 +7,75 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/*
-  You will add models during Week 2 when you start logging messages.
-  Keeping it empty for now is fine. Here is a preview you can uncomment later.
+// User model for Discord users
+model User {
+  id          String   @id @default(cuid())
+  discordId   String   @unique
+  username    String
+  displayName String?
+  email       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-model MessageLog {
-  id         String   @id @default(cuid())
-  guildId    String
-  channelId  String
-  authorId   String
-  content    String
-  createdAt  DateTime @default(now())
+  // Relations
+  teamMemberships TeamMember[]
+  messageLogs     MessageLog[]
+
+  @@map("users")
 }
-*/
+
+// Team model for project groups
+model Team {
+  id          String   @id @default(cuid())
+  teamNumber  Int      @unique
+  name        String
+  description String?
+  projectTitle String?
+  projectDescription String?
+  channelId   String   @unique
+  guildId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  members TeamMember[]
+
+  @@map("teams")
+}
+
+// Team membership with roles
+model TeamMember {
+  id        String   @id @default(cuid())
+  userId    String
+  teamId    String
+  role      TeamRole @default(MEMBER)
+  joinedAt  DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, teamId])
+  @@map("team_members")
+}
+
+// Message logging for context tracking
+model MessageLog {
+  id        String   @id @default(cuid())
+  guildId   String
+  channelId String
+  authorId  String
+  content   String
+  createdAt DateTime @default(now())
+
+  // Relations
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("message_logs")
+}
+
+// Team roles enum
+enum TeamRole {
+  LEADER
+  MEMBER
+}
