@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/*
+  You will add models during Week 2 when you start logging messages.
+  Keeping it empty for now is fine. Here is a preview you can uncomment later.
+
+model MessageLog {
+  id         String   @id @default(cuid())
+  guildId    String
+  channelId  String
+  authorId   String
+  content    String
+  createdAt  DateTime @default(now())
+}
+*/
