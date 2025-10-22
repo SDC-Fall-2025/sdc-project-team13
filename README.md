@@ -1,6 +1,6 @@
 # Cache
 
-![Node Version](https://img.shields.io/badge/Node-v22.20-green?style=flat-square&logoColor=%233C173A)
+![Node Version](https://img.shields.io/badge/Node-v22.20-green?style=flat-square)
 ![Project Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FSDC-Fall-2025%2Fsdc-project-team13%2Fraw%2Fmain%2Fpackage.json&query=%24.version&prefix=v&style=flat-square&label=Version)
 
 **Cache** is a discord bot that helps with managing, leading, and contributing to SDC team projects.
