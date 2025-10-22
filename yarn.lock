@@ -355,7 +355,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/markdown@npm:^7.4.1":
+"@eslint/markdown@npm:^7.5.0":
   version: 7.5.0
   resolution: "@eslint/markdown@npm:7.5.0"
   dependencies:
@@ -1200,7 +1200,7 @@ __metadata:
   resolution: "cache@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.38.0"
-    "@eslint/markdown": "npm:^7.4.1"
+    "@eslint/markdown": "npm:^7.5.0"
     "@types/node": "npm:^24.9.1"
     discord.js: "npm:^14.23.2"
     eslint: "npm:^9.38.0"
