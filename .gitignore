@@ -1,3 +1,13 @@
+# Node + Yarn
 node_modules/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Build/Prod Files
 dist/
 .env

@@ -4,6 +4,7 @@
   "description": "Cache is a discord bot that helps with managing, leading, and contributing to SDC team projects.",
   "main": "./dist/index.js",
   "type": "commonjs",
+  "packageManager": "yarn@4.10.3",
   "scripts": {
     "lint": "eslint",
     "dev": "tsx --watch ./src/index.ts",
