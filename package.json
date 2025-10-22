@@ -1,0 +1,55 @@
+{
+  "name": "cache",
+  "version": "0.1.0",
+  "description": "Cache is a discord bot that helps with managing, leading, and contributing to SDC team projects.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SDC-Fall-2025/sdc-project-team13.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "ai",
+    "llm",
+    "project",
+    "management",
+    "project",
+    "tool",
+    "pm"
+  ],
+  "author": "SDC Fall 2025 - Team 13",
+  "contributors": [
+    {
+      "name": "Connor Furby",
+      "email": "cfurby@wisc.edu"
+    },
+    {
+      "name": "Cash Pergande",
+      "email": "cash.pergande@gmail.com"
+    },
+    {
+      "name": "Gavin Smith",
+      "email": "me@gavinhsmith.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SDC-Fall-2025/sdc-project-team13/issues"
+  },
+  "homepage": "https://github.com/SDC-Fall-2025/sdc-project-team13#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "@eslint/markdown": "^7.4.1",
+    "@types/node": "^24.9.1",
+    "eslint": "^9.38.0",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2"
+  },
+  "dependencies": {
+    "discord.js": "^14.23.2",
+    "octokit": "^5.0.4"
+  }
+}
