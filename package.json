@@ -2,7 +2,7 @@
   "name": "cache",
   "version": "0.1.0",
   "description": "Cache is a discord bot that helps with managing, leading, and contributing to SDC team projects.",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {},
   "repository": {
     "type": "git",
