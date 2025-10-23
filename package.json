@@ -6,9 +6,13 @@
   "type": "commonjs",
   "packageManager": "yarn@4.10.3",
   "scripts": {
-    "lint": "eslint",
-    "dev": "tsx --watch --env-file=.env ./src/index.ts",
-    "build": "tsc",
+    "dev:lint": "esw --watch ./src",
+    "dev:compile": "tsx --watch --env-file=.env ./src/index.ts | sed -u 's/\\x1Bc//g'",
+    "dev": "conc -c green,blue -n ESLint,TSX 'yarn dev:lint' 'yarn dev:compile'",
+    "stylize": "prettier . --write",
+    "lint": "eslint ./src/**/*",
+    "compile": "tsc",
+    "build": "yarn lint; yarn compile",
     "start": "node --env-file=.env ./dist/index.js"
   },
   "repository": {
@@ -50,9 +54,12 @@
     "@eslint/js": "^9.38.0",
     "@eslint/markdown": "^7.5.0",
     "@types/node": "^24.9.1",
+    "concurrently": "^9.2.1",
     "eslint": "^9.38.0",
+    "eslint-watch": "^8.0.0",
     "globals": "^16.4.0",
     "jiti": "^2.6.1",
+    "prettier": "^3.6.2",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2"
