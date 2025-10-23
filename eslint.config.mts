@@ -9,13 +9,13 @@ export default defineConfig([
     files: ["**/*.{ts,mts,cts}"],
     plugins: { js },
     extends: ["js/recommended"],
-    languageOptions: { globals: globals.node },
+    languageOptions: { globals: globals.node }
   },
   tseslint.configs.recommended,
   {
     files: ["**/*.md"],
     plugins: { markdown },
     language: "markdown/gfm",
-    extends: ["markdown/recommended"],
-  },
+    extends: ["markdown/recommended"]
+  }
 ]);

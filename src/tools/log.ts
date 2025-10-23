@@ -16,7 +16,7 @@ function createRotatingFileTransport(name: string, level: string) {
     filename: `%DATE%_${name}.log`,
     datePattern: "YYYY-MM-DD-HH",
     maxSize: "20m",
-    level,
+    level
   });
 }
 
@@ -39,9 +39,9 @@ export function createNewLogger(name: string, level: string) {
       format.timestamp(),
       format.printf(({ timestamp, label, level, message }) => {
         return `${timestamp} [${label}] ${level}: ${message}`;
-      }),
+      })
     ),
-    transports: [fullLogFile, issueLogFile, new transports.Console()],
+    transports: [fullLogFile, issueLogFile, new transports.Console()]
   });
 }
 
