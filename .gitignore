@@ -10,4 +10,5 @@ node_modules/
 
 # Build/Prod Files
 dist/
+logs/
 .env
