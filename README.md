@@ -15,4 +15,45 @@ This project uses NodeJS LTS v22.20+ and Yarn 4 to manage dependancies. To downl
 3. Run `corepack enable` to activate Yarn.
 4. In the repository, run `yarn` to install all dev dependancies.
 
-Your good to contribute!
+You're good to contribute!
+
+## Quickstart
+
+1. Install
+   - Admin shell (Windows only): `corepack enable && corepack prepare yarn@4.10.3 --activate`
+   - Install deps: `yarn install`
+2. Configure `.env` in project root:
+   - `DISCORD_TOKEN=...`
+   - `CLIENT_ID=...`
+   - `GUILD_ID=...`
+3. Invite the bot to your test server
+4. Register commands (guild/dev):
+   - `yarn register:dev`
+5. Run
+   - Dev: `yarn dev`
+   - Prod: `yarn build && yarn start`
+
+## Project Structure
+- `src/index.ts`: boot + event wiring
+- `src/bot/`: Discord client + command system
+  - `index.ts`: creates/logs in the Discord client
+  - `commands/`: command files (definition + handler)
+    - `hello.ts`: example command
+    - `random.ts`: random number command
+    - `registry.ts`: single source of truth for definitions/handlers
+  - `registerCommands.ts`: registers slash commands (guild/global)
+- `src/tools/log.ts`: Winston logging
+- `src/database/`: placeholder for persistence
+
+## Commands
+- Add: create `src/bot/commands/<name>.ts` exporting `<name>Command` and `handle<Name>`. Import into `registry.ts`, add to `commandDefinitions` and `commandHandlers`. Re-run `yarn register:dev`.
+- Update: change the command definition; re-run `yarn register:dev`.
+- Remove: remove from `registry.ts` and re-run `yarn register:dev` (Discord will delete it from the guild).
+- Global vs Guild:
+  - Dev: `Routes.applicationGuildCommands(clientId, guildId)` (fast).
+  - Prod: `Routes.applicationCommands(clientId)` (slow propagation).
+
+## Troubleshooting
+- `.env` not loading: ensure `package.json` uses `--env-file=.env` or add `import "dotenv/config"` in scripts.
+- Commands not showing: re-run `yarn register:dev`, confirm `GUILD_ID`, ensure bot is in the guild.
+- Bot not replying: check `interactionCreate` handler and permissions to send messages.

@@ -13,7 +13,8 @@
     "lint": "eslint ./src",
     "compile": "tsc",
     "build": "yarn lint; yarn compile",
-    "start": "node --env-file=.env ./dist/index.js"
+    "start": "node --env-file=.env ./dist/index.js",
+    "register:dev": "tsx --env-file=.env ./src/bot/registerCommands.ts"
   },
   "repository": {
     "type": "git",

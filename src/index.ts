@@ -1,5 +1,6 @@
 import { getBotClient, logger as botLog } from "./bot";
 import { logger } from "./tools/log";
+import { commandHandlers } from "./bot/commands/registry";
 
 // Start the application.
 logger.info("Starting the program...");
@@ -7,10 +8,22 @@ logger.info("Starting the program...");
 // Attempt to connect to the bot system, and close the connection after.
 getBotClient()
   .then((client) => {
-    botLog.info("Test complete, closing bot client...");
-    client.destroy();
+    botLog.info("Bot is online. Waiting for commands...");
+    
+    client.on("interactionCreate", async (interaction) => {
+      if (!interaction.isChatInputCommand()) return;
 
-    logger.info("Exit with code 0.");
-    process.exit(0);
+      const handler = commandHandlers.get(interaction.commandName);
+      if (!handler) return; // Command not found, ignore.
+
+      try {
+        await handler(interaction);
+      } catch (err) {
+        botLog.error(`Error executing command ${interaction.commandName}:`, err as Error);
+        await interaction.reply({ content: "There was an error while executing this command!", ephemeral: true });
+      }
+    });
   })
-  .catch(botLog.error);
+  .catch((err) => {
+    logger.error(String(err));
+  });
