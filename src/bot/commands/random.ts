@@ -34,5 +34,5 @@ export async function handleRandom(interaction: ChatInputCommandInteraction) {
     }
 
     const result = Math.floor(Math.random() * (max - min + 1)) + min;
-    await interaction.reply({ content: `Your random number between ${min} and ${max}: ${result}!!!`, ephemeral: true });
+    await interaction.reply({ content: `Your random number between ${min} and ${max}: ${result}!!!` });
 }
