@@ -7,7 +7,7 @@
   "packageManager": "yarn@4.10.3",
   "scripts": {
     "dev:lint": "esw --watch ./src",
-    "dev:compile": "tsx --watch --env-file=.env ./src/index.ts | sed -u 's/\\x1Bc//g'",
+    "dev:compile": "tsx --watch --env-file=.env ./src/index.ts",
     "dev": "conc -c green,blue -n ESLint,TSX 'yarn dev:lint' 'yarn dev:compile'",
     "stylize": "prettier . --write",
     "lint": "eslint ./src",
