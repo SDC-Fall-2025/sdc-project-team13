@@ -2,9 +2,30 @@
 import { createNewLogger } from "../tools/log";
 export const dbLogger = createNewLogger("db");
 
+/** A SDC project. */
+export interface Project {
+  /** The project identifier. */
+  readonly id: number;
+  /** The project's readable name. */
+  name: string;
+  /** A description of this project. */
+  description: string;
+  /** The team the projects belongs to. */
+  team: number;
+}
+
+/** A team member. */
+export interface TeamMember {
+  /** Their discord ID. */
+  readonly id: number;
+  /** The team they belong to. */
+  team: number;
+  /** Their permission level. */
+  role: string;
+}
+
 /**
  * Interface for a connected database, defines all of the methods we might need to access.
- * @param <T> The data type that defines the internal database manager.
  */
 export interface DatabaseManager {
   /**
@@ -18,6 +39,11 @@ export interface DatabaseManager {
    * @returns A boolean that signifies if the database is ready or not.
    */
   isReady(): boolean;
+
+  /**
+   * Setup the tables on the database that we want to use.
+   */
+  setup(): void;
 
   /**
    * Initiates the database with whatever it needs to be ready.
