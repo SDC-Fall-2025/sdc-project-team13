@@ -1,6 +1,8 @@
 // Import the required classes from discord.js
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { createNewLogger } from "../tools/log";
+import "dotenv/config"; // automatically loads .env into process.env
+
 
 /** The internal instance of the discord bot. */
 let client: Client<boolean>;

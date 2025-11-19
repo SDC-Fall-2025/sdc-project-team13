@@ -1,5 +1,7 @@
 import { REST, Routes } from "discord.js";
 import { commandDefinitions } from "./commands/registry";
+import "dotenv/config"; // automatically loads .env into process.env
+
 
 async function main() {
     const token = process.env.DISCORD_TOKEN;
