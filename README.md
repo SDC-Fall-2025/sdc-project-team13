@@ -22,7 +22,7 @@ You're good to contribute!
 1. Install
    - Admin shell (Windows only): `corepack enable && corepack prepare yarn@4.10.3 --activate`
    - Install deps: `yarn install`
-2. Configure `.env` in project root:
+2. Configure `.env` in project root: (If you have access, find them in the GDoc)
    - `DISCORD_TOKEN=...`
    - `CLIENT_ID=...`
    - `GUILD_ID=...`
@@ -34,6 +34,7 @@ You're good to contribute!
    - Prod: `yarn build && yarn start`
 
 ## Project Structure
+
 - `src/index.ts`: boot + event wiring
 - `src/bot/`: Discord client + command system
   - `index.ts`: creates/logs in the Discord client
@@ -46,6 +47,7 @@ You're good to contribute!
 - `src/database/`: placeholder for persistence
 
 ## Commands
+
 - Add: create `src/bot/commands/<name>.ts` exporting `<name>Command` and `handle<Name>`. Import into `registry.ts`, add to `commandDefinitions` and `commandHandlers`. Re-run `yarn register:dev`.
 - Update: change the command definition; re-run `yarn register:dev`.
 - Remove: remove from `registry.ts` and re-run `yarn register:dev` (Discord will delete it from the guild).
@@ -54,6 +56,7 @@ You're good to contribute!
   - Prod: `Routes.applicationCommands(clientId)` (slow propagation).
 
 ## Troubleshooting
+
 - `.env` not loading: ensure `package.json` uses `--env-file=.env` or add `import "dotenv/config"` in scripts.
 - Commands not showing: re-run `yarn register:dev`, confirm `GUILD_ID`, ensure bot is in the guild.
 - Bot not replying: check `interactionCreate` handler and permissions to send messages.
