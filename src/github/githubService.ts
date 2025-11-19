@@ -5,7 +5,7 @@ export class GitHubService {
     const res = await octokit.request("GET /repos/{owner}/{repo}/commits", {
       owner,
       repo,
-      per_page: 5
+      per_page: 100
     });
     return res.data;
   }
