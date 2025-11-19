@@ -1,4 +1,5 @@
 // Create logger
+import { type Database } from "better-sqlite3";
 import { createNewLogger } from "../tools/log";
 export const dbLogger = createNewLogger("db");
 
@@ -54,6 +55,12 @@ export interface DatabaseManager {
    * Closes the database connection, back to state before initiate was called.
    */
   close(): void;
+
+  /**
+   * Get the underlying database handler, for experienced users. Currently `better-sqlite3`
+   * but subject to change B)
+   */
+  getRawDatabase(): Database;
 }
 
 // Export the database tool we want to use.

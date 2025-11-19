@@ -93,5 +93,10 @@ export const db: DatabaseManager = {
       // Table was not open in the first place.
       throw alreadyClosedError();
     }
+  },
+
+  // Return the underlying database so we can get to work!
+  getRawDatabase() {
+    return sql;
   }
 };
