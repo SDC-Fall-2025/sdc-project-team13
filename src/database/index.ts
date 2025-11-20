@@ -42,7 +42,7 @@ export interface DatabaseManager {
   isReady(): boolean;
 
   /**
-   * Setup the tables on the database that we want to use.
+   * Setup the tables on the database that we want to use. Should only be run in init cycle!!
    */
   setup(): void;
 

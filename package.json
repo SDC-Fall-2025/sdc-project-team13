@@ -14,7 +14,8 @@
     "compile": "tsc",
     "build": "yarn lint; yarn compile",
     "start": "node --env-file=.env ./dist/index.js",
-    "register:dev": "tsx --env-file=.env ./src/bot/registerCommands.ts"
+    "dev:setup": "tsx --env-file=.env ./src/setup.ts",
+    "setup": "node --env-file-.env ./dist/setup.js"
   },
   "repository": {
     "type": "git",

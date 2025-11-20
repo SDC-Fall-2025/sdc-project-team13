@@ -74,8 +74,6 @@ export const db: DatabaseManager = {
 
       logger.info("SQLite ready!");
       ready = true;
-
-      this.setup();
     } else {
       // Table was already open.
       throw alreadyOpenError();
